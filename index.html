@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="tr" data-lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASSIST-AI — Beceri Antrenmanı</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/login.css" />
+  <link rel="stylesheet" href="css/scenarios.css" />
+</head>
+<body class="page-login">
+
+  <!-- ── GDPR / KVKK Modal ─────────────────────────── -->
+  <div id="gdpr-modal" class="modal-overlay active" role="dialog" aria-modal="true" aria-labelledby="gdpr-title">
+    <div class="modal-box gdpr-box">
+      <div class="modal-header">
+        <div class="modal-logo">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="20" fill="#4F8EF7"/><path d="M12 20c0-4.418 3.582-8 8-8s8 3.582 8 8-3.582 8-8 8-8-3.582-8-8zm8-3a3 3 0 100 6 3 3 0 000-6z" fill="#fff"/></svg>
+        </div>
+        <h2 id="gdpr-title" data-i18n="gdpr_title">Veri Gizliliği ve KVKK Onayı</h2>
+      </div>
+      <div class="gdpr-lang-select">
+        <label data-i18n="select_language">Dil Seçin:</label>
+        <div class="lang-buttons">
+          <button class="lang-btn active" data-lang="tr">🇹🇷 Türkçe</button>
+          <button class="lang-btn" data-lang="en">🇬🇧 English</button>
+          <button class="lang-btn" data-lang="de">🇩🇪 Deutsch</button>
+          <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
+          <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
+          <button class="lang-btn" data-lang="pt">🇵🇹 Português</button>
+        </div>
+      </div>
+      <div class="gdpr-content">
+        <p data-i18n="gdpr_intro">Bu uygulama, otizmli genç yetişkin bireylerin günlük yaşam becerilerini geliştirmelerine yardımcı olmak amacıyla tasarlanmıştır.</p>
+        <div class="gdpr-items">
+          <div class="gdpr-item">
+            <span class="gdpr-icon">🔒</span>
+            <div>
+              <strong data-i18n="gdpr_data_title">Kişisel Veriler</strong>
+              <p data-i18n="gdpr_data_text">Ad, soyad, yaş ve ebeveyn bilgileri yalnızca terapötik değerlendirme amacıyla toplanır.</p>
+            </div>
+          </div>
+          <div class="gdpr-item">
+            <span class="gdpr-icon">📊</span>
+            <div>
+              <strong data-i18n="gdpr_perf_title">Performans Verileri</strong>
+              <p data-i18n="gdpr_perf_text">Senaryo başarı oranları, bağımsızlık puanları ve süre bilgileri anonim olarak işlenir.</p>
+            </div>
+          </div>
+          <div class="gdpr-item">
+            <span class="gdpr-icon">🌍</span>
+            <div>
+              <strong data-i18n="gdpr_transfer_title">Veri Transferi</strong>
+              <p data-i18n="gdpr_transfer_text">Verileriniz üçüncü taraflarla paylaşılmaz. GDPR/KVKK kapsamında korunur.</p>
+            </div>
+          </div>
+          <div class="gdpr-item">
+            <span class="gdpr-icon">📋</span>
+            <div>
+              <strong data-i18n="gdpr_report_title">Raporlama</strong>
+              <p data-i18n="gdpr_report_text">Ebeveyn/uzman onayı ile kişisel raporlar oluşturulabilir ve dışa aktarılabilir.</p>
+            </div>
+          </div>
+        </div>
+        <div class="gdpr-checkboxes">
+          <label class="check-item">
+            <input type="checkbox" id="gdpr-check1" />
+            <span data-i18n="gdpr_check1">Kişisel verilerimin yukarıda açıklanan amaçlarla işlenmesine onay veriyorum.</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="gdpr-check2" />
+            <span data-i18n="gdpr_check2">Kullanım koşullarını ve gizlilik politikasını okudum, kabul ediyorum.</span>
+          </label>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-secondary" id="gdpr-reject" data-i18n="gdpr_reject">Reddet</button>
+        <button class="btn-primary" id="gdpr-accept" disabled data-i18n="gdpr_accept">Kabul Et ve Devam Et</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── LOGIN PAGE ──────────────────────────────── -->
+  <div id="login-page" class="page hidden">
+    <div class="login-split">
+      <div class="login-visual">
+        <div class="login-visual-content">
+          <div class="brand-mark">
+            <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/>
+              <path d="M18 30c0-6.627 5.373-12 12-12s12 5.373 12 12-5.373 12-12 12-12-5.373-12-12zm12-4a4 4 0 100 8 4 4 0 000-8z" fill="#fff"/>
+            </svg>
+          </div>
+          <h1>ASSIST-AI</h1>
+          <p data-i18n="login_tagline">Beceri Antrenmanı Platformu</p>
+          <div class="login-features">
+            <div class="feat"><span>🎯</span><span data-i18n="feat1">Kişiselleştirilmiş Senaryolar</span></div>
+            <div class="feat"><span>📈</span><span data-i18n="feat2">Detaylı Raporlama</span></div>
+            <div class="feat"><span>🌍</span><span data-i18n="feat3">6 Dil Desteği</span></div>
+            <div class="feat"><span>👨‍👩‍👧</span><span data-i18n="feat4">Ebeveyn Takibi</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="login-form-area">
+        <div class="login-form-wrap">
+          <div class="login-tabs">
+            <button class="tab-btn active" data-tab="login" data-i18n="tab_login">Giriş Yap</button>
+            <button class="tab-btn" data-tab="register" data-i18n="tab_register">Kayıt Ol</button>
+          </div>
+
+          <!-- Login -->
+          <form id="login-form" class="auth-form active">
+            <h2 data-i18n="login_title">Hoş Geldiniz</h2>
+            <div class="form-group">
+              <label data-i18n="email_label">E-posta</label>
+              <input type="email" id="login-email" placeholder="ornek@email.com" />
+            </div>
+            <div class="form-group">
+              <label data-i18n="password_label">Şifre</label>
+              <input type="password" id="login-password" placeholder="••••••••" />
+            </div>
+            <div class="form-group role-select">
+              <label data-i18n="role_label">Rol</label>
+              <select id="login-role">
+                <option value="user" data-i18n="role_user">Kullanıcı (Birey)</option>
+                <option value="parent" data-i18n="role_parent">Ebeveyn</option>
+                <option value="therapist" data-i18n="role_therapist">Terapist/Uzman</option>
+                <option value="admin" data-i18n="role_admin">Yönetici</option>
+              </select>
+            </div>
+            <button type="button" class="btn-primary full" id="do-login" data-i18n="do_login">Giriş Yap</button>
+            <p class="demo-hint" data-i18n="demo_hint">Demo: herhangi bir e-posta ve şifre girebilirsiniz</p>
+          </form>
+
+          <!-- Register -->
+          <form id="register-form" class="auth-form">
+            <h2 data-i18n="register_title">Hesap Oluştur</h2>
+            <div class="form-row">
+              <div class="form-group">
+                <label data-i18n="first_name">Ad</label>
+                <input type="text" id="reg-firstname" />
+              </div>
+              <div class="form-group">
+                <label data-i18n="last_name">Soyad</label>
+                <input type="text" id="reg-lastname" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label data-i18n="birth_date">Doğum Tarihi</label>
+              <input type="date" id="reg-birthdate" />
+            </div>
+            <div class="form-group">
+              <label data-i18n="country_label">Ülke</label>
+              <select id="reg-country">
+                <option value="TR">🇹🇷 Türkiye</option>
+                <option value="DE">🇩🇪 Almanya</option>
+                <option value="FR">🇫🇷 Fransa</option>
+                <option value="ES">🇪🇸 İspanya</option>
+                <option value="PT">🇵🇹 Portekiz</option>
+                <option value="GB">🇬🇧 İngiltere</option>
+                <option value="US">🇺🇸 Amerika</option>
+                <option value="OTHER">🌍 Diğer</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label data-i18n="parent_name_label">Ebeveyn Adı</label>
+              <input type="text" id="reg-parent-name" />
+            </div>
+            <div class="form-group">
+              <label data-i18n="parent_email_label">Ebeveyn E-posta</label>
+              <input type="email" id="reg-parent-email" />
+            </div>
+            <div class="form-group">
+              <label data-i18n="email_label">E-posta</label>
+              <input type="email" id="reg-email" />
+            </div>
+            <div class="form-group">
+              <label data-i18n="password_label">Şifre</label>
+              <input type="password" id="reg-password" />
+            </div>
+            <div class="form-group">
+              <label data-i18n="diagnosis_label">Tanı / Not (İsteğe Bağlı)</label>
+              <textarea id="reg-diagnosis" rows="2"></textarea>
+            </div>
+            <button type="button" class="btn-primary full" id="do-register" data-i18n="do_register">Kayıt Ol</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MAIN APP ─────────────────────────────────── -->
+  <div id="app" class="hidden">
+    <!-- Sidebar Nav -->
+    <nav id="sidebar">
+      <div class="sidebar-brand">
+        <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="20" fill="#4F8EF7"/><path d="M12 20c0-4.418 3.582-8 8-8s8 3.582 8 8-3.582 8-8 8-8-3.582-8-8zm8-3a3 3 0 100 6 3 3 0 000-6z" fill="#fff"/></svg>
+        <span>ASSIST-AI</span>
+      </div>
+      <ul class="nav-items">
+        <li><a href="#" data-page="dashboard" class="nav-item active"><span class="nav-icon">🏠</span><span data-i18n="nav_dashboard">Panel</span></a></li>
+        <li><a href="#" data-page="scenarios" class="nav-item"><span class="nav-icon">🎭</span><span data-i18n="nav_scenarios">Senaryolar</span></a></li>
+        <li><a href="#" data-page="reports" class="nav-item"><span class="nav-icon">📊</span><span data-i18n="nav_reports">Raporlar</span></a></li>
+        <li><a href="#" data-page="profile" class="nav-item"><span class="nav-icon">👤</span><span data-i18n="nav_profile">Profil</span></a></li>
+        <li><a href="#" data-page="consent" class="nav-item"><span class="nav-icon">📋</span><span data-i18n="nav_consent">Onam Formu</span></a></li>
+        <li id="admin-nav-item" class="hidden"><a href="#" data-page="admin" class="nav-item"><span class="nav-icon">⚙️</span><span data-i18n="nav_admin">Yönetim</span></a></li>
+      </ul>
+      <div class="sidebar-bottom">
+        <div class="lang-mini">
+          <select id="lang-switcher">
+            <option value="tr">🇹🇷 TR</option>
+            <option value="en">🇬🇧 EN</option>
+            <option value="de">🇩🇪 DE</option>
+            <option value="fr">🇫🇷 FR</option>
+            <option value="es">🇪🇸 ES</option>
+            <option value="pt">🇵🇹 PT</option>
+          </select>
+        </div>
+        <button class="btn-logout" id="logout-btn" data-i18n="logout">Çıkış Yap</button>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <main id="main-content">
+      <!-- Pages are loaded via JS -->
+    </main>
+  </div>
+
+  <!-- ── SCENARIO MODAL ──────────────────────────── -->
+  <div id="scenario-modal" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-box scenario-modal-box" id="scenario-modal-inner">
+      <!-- filled by JS -->
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/i18n.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/scenarios.js"></script>
+  <script src="js/reports.js"></script>
+  <script src="js/consent.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
