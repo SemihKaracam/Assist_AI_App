@@ -1,4 +1,5 @@
 # ASSIST-AI — Beceri Antrenmanı Platformu
+# https://assist-ai-app.vercel.app/
 
 Otizmli genç yetişkin bireyler için yapay zekâ destekli sanal asistan ve senaryo tabanlı beceri antrenmanı platformu.
 
