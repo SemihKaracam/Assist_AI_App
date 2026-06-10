@@ -883,7 +883,7 @@ export default function FocusTracker({ onFocusChange }) {
       `}</style>
 
       <div style={{
-        position:"fixed", top:16, right:16, zIndex:400,
+        position:"fixed", top:16, left:16, zIndex:400,
         width: isMinimized ? 48 : 222,
         background:"rgba(10,15,30,0.93)",
         border:`2px solid ${isFocused ? "rgba(34,197,94,0.4)" : st.color}`,
